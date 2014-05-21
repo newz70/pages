@@ -1,5 +1,6 @@
-<?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
-<div id="content"><?php echo $content_top; ?>
+<?php echo $header; ?>
+<?php echo $column_left; ?>
+		<div class="<?php if ($column_left or $column_right) { ?>col-sm-9<?php } ?> <?php if (!$column_left & !$column_left) { ?>col-sm-12  <?php } ?> <?php if ($column_left & $column_right) { ?>col-sm-6<?php } ?>" id="content"><?php echo $content_top; ?>
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
@@ -8,40 +9,43 @@
   <h1><?php echo $heading_title; ?></h1>
   <div class="checkout">
     <div id="checkout">
-      <div class="checkout-heading"><?php echo $text_checkout_option; ?></div>
-      <div class="checkout-content"></div>
+      <div class="checkout-heading"><div class="marker-chekout"><?php echo $text_checkout_option; ?></div></div>
+      <div class="checkout-content opt"></div>
     </div>
     <?php if (!$logged) { ?>
     <div id="payment-address">
-      <div class="checkout-heading"><span><?php echo $text_checkout_account; ?></span></div>
+      <div class="checkout-heading"><div class="marker-chekout"><span><?php echo $text_checkout_account; ?></span></div></div>
       <div class="checkout-content"></div>
     </div>
     <?php } else { ?>
     <div id="payment-address">
-      <div class="checkout-heading"><span><?php echo $text_checkout_payment_address; ?></span></div>
+      <div class="checkout-heading"><div class="marker-chekout"><span><?php echo $text_checkout_payment_address; ?></span></div></div>
       <div class="checkout-content"></div>
     </div>
     <?php } ?>
     <?php if ($shipping_required) { ?>
     <div id="shipping-address">
-      <div class="checkout-heading"><?php echo $text_checkout_shipping_address; ?></div>
+      <div class="checkout-heading"><div class="marker-chekout"><?php echo $text_checkout_shipping_address; ?></div></div>
       <div class="checkout-content"></div>
     </div>
     <div id="shipping-method">
-      <div class="checkout-heading"><?php echo $text_checkout_shipping_method; ?></div>
+      <div class="checkout-heading"><div class="marker-chekout"><?php echo $text_checkout_shipping_method; ?></div></div>
       <div class="checkout-content"></div>
     </div>
     <?php } ?>
     <div id="payment-method">
-      <div class="checkout-heading"><?php echo $text_checkout_payment_method; ?></div>
+      <div class="checkout-heading"><div class="marker-chekout"><?php echo $text_checkout_payment_method; ?></div></div>
       <div class="checkout-content"></div>
     </div>
     <div id="confirm">
-      <div class="checkout-heading"><?php echo $text_checkout_confirm; ?></div>
+      <div class="checkout-heading"><div class="marker-chekout"><?php echo $text_checkout_confirm; ?></div></div>
       <div class="checkout-content"></div>
     </div>
   </div>
   <?php echo $content_bottom; ?></div>
+
+<?php echo $column_right; ?>
+
 <script type="text/javascript"><!--
 $('#checkout .checkout-content input[name=\'account\']').live('change', function() {
 	if ($(this).attr('value') == 'register') {
@@ -104,7 +108,7 @@ $('#button-account').live('click', function() {
 		dataType: 'html',
 		beforeSend: function() {
 			$('#button-account').attr('disabled', true);
-			$('#button-account').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+			$('#button-account').after('<span class="wait">&nbsp;<img src="catalog/view/theme/theme397/image/loading.gif" alt="" /></span>');
 		},		
 		complete: function() {
 			$('#button-account').attr('disabled', false);
@@ -138,7 +142,7 @@ $('#button-login').live('click', function() {
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-login').attr('disabled', true);
-			$('#button-login').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+			$('#button-login').after('<span class="wait">&nbsp;<img src="catalog/view/theme/theme397/image/loading.gif" alt="" /></span>');
 		},	
 		complete: function() {
 			$('#button-login').attr('disabled', false);
@@ -170,7 +174,7 @@ $('#button-register').live('click', function() {
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-register').attr('disabled', true);
-			$('#button-register').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+			$('#button-register').after('<span class="wait">&nbsp;<img src="catalog/view/theme/theme397/image/loading.gif" alt="" /></span>');
 		},	
 		complete: function() {
 			$('#button-register').attr('disabled', false); 
@@ -183,7 +187,7 @@ $('#button-register').live('click', function() {
 				location = json['redirect'];				
 			} else if (json['error']) {
 				if (json['error']['warning']) {
-					$('#payment-address .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+					$('#payment-address .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/theme397/image/close-1.png" alt="" class="close" /></div>');
 					
 					$('.warning').fadeIn('slow');
 				}
@@ -354,7 +358,7 @@ $('#button-payment-address').live('click', function() {
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-payment-address').attr('disabled', true);
-			$('#button-payment-address').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+			$('#button-payment-address').after('<span class="wait">&nbsp;<img src="catalog/view/theme/theme397/image/loading.gif" alt="" /></span>');
 		},	
 		complete: function() {
 			$('#button-payment-address').attr('disabled', false);
@@ -367,7 +371,7 @@ $('#button-payment-address').live('click', function() {
 				location = json['redirect'];
 			} else if (json['error']) {
 				if (json['error']['warning']) {
-					$('#payment-address .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+					$('#payment-address .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/theme397/image/close-1.png" alt="" class="close" /></div>');
 					
 					$('.warning').fadeIn('slow');
 				}
@@ -483,7 +487,7 @@ $('#button-shipping-address').live('click', function() {
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-shipping-address').attr('disabled', true);
-			$('#button-shipping-address').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+			$('#button-shipping-address').after('<span class="wait">&nbsp;<img src="catalog/view/theme/theme397/image/loading.gif" alt="" /></span>');
 		},	
 		complete: function() {
 			$('#button-shipping-address').attr('disabled', false);
@@ -496,7 +500,7 @@ $('#button-shipping-address').live('click', function() {
 				location = json['redirect'];
 			} else if (json['error']) {
 				if (json['error']['warning']) {
-					$('#shipping-address .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+					$('#shipping-address .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/theme397/image/close-1.png" alt="" class="close" /></div>');
 					
 					$('.warning').fadeIn('slow');
 				}
@@ -596,7 +600,7 @@ $('#button-guest').live('click', function() {
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-guest').attr('disabled', true);
-			$('#button-guest').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+			$('#button-guest').after('<span class="wait">&nbsp;<img src="catalog/view/theme/theme397/image/loading.gif" alt="" /></span>');
 		},	
 		complete: function() {
 			$('#button-guest').attr('disabled', false); 
@@ -609,7 +613,7 @@ $('#button-guest').live('click', function() {
 				location = json['redirect'];
 			} else if (json['error']) {
 				if (json['error']['warning']) {
-					$('#payment-address .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+					$('#payment-address .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/theme397/image/close-1.png" alt="" class="close" /></div>');
 					
 					$('.warning').fadeIn('slow');
 				}
@@ -756,7 +760,7 @@ $('#button-guest-shipping').live('click', function() {
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-guest-shipping').attr('disabled', true);
-			$('#button-guest-shipping').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+			$('#button-guest-shipping').after('<span class="wait">&nbsp;<img src="catalog/view/theme/theme397/image/loading.gif" alt="" /></span>');
 		},	
 		complete: function() {
 			$('#button-guest-shipping').attr('disabled', false); 
@@ -769,7 +773,7 @@ $('#button-guest-shipping').live('click', function() {
 				location = json['redirect'];
 			} else if (json['error']) {
 				if (json['error']['warning']) {
-					$('#shipping-address .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+					$('#shipping-address .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/theme397/image/close-1.png" alt="" class="close" /></div>');
 					
 					$('.warning').fadeIn('slow');
 				}
@@ -838,7 +842,7 @@ $('#button-shipping-method').live('click', function() {
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-shipping-method').attr('disabled', true);
-			$('#button-shipping-method').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+			$('#button-shipping-method').after('<span class="wait">&nbsp;<img src="catalog/view/theme/theme397/image/loading.gif" alt="" /></span>');
 		},	
 		complete: function() {
 			$('#button-shipping-method').attr('disabled', false);
@@ -851,7 +855,7 @@ $('#button-shipping-method').live('click', function() {
 				location = json['redirect'];
 			} else if (json['error']) {
 				if (json['error']['warning']) {
-					$('#shipping-method .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+					$('#shipping-method .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/theme397/image/close-1.png" alt="" class="close" /></div>');
 					
 					$('.warning').fadeIn('slow');
 				}			
@@ -891,7 +895,7 @@ $('#button-payment-method').live('click', function() {
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-payment-method').attr('disabled', true);
-			$('#button-payment-method').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+			$('#button-payment-method').after('<span class="wait">&nbsp;<img src="catalog/view/theme/theme397/image/loading.gif" alt="" /></span>');
 		},	
 		complete: function() {
 			$('#button-payment-method').attr('disabled', false);
@@ -904,7 +908,7 @@ $('#button-payment-method').live('click', function() {
 				location = json['redirect'];
 			} else if (json['error']) {
 				if (json['error']['warning']) {
-					$('#payment-method .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+					$('#payment-method .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/theme397/image/close-1.png" alt="" class="close" /></div>');
 					
 					$('.warning').fadeIn('slow');
 				}			
